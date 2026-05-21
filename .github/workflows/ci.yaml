@@ -20,7 +20,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t xabiere15/java-login-app:${{ github.sha }} .
+          docker build -t xabiere15/java-login-app:${{ github.sha }} ./App 
 
       - name: Push Docker image
         run: |
