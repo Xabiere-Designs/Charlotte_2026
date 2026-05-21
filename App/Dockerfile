@@ -25,7 +25,7 @@ RUN chmod -R 700 /root/.ssh && \
     chmod 600 /root/.ssh/id_rsa && \
     ssh-keyscan bitbucket.org >> /root/.ssh/known_hosts
 
-RUN git clone git@bitbucket.org:xabiere-designs/java-loginn-app.git /opt/app
+RUN git clone git@bitbucket.org:xabiere-designs/java-login-app.git /opt/app
 WORKDIR /opt/app
 RUN /opt/maven/bin/mvn package
 
