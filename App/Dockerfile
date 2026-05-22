@@ -1,19 +1,14 @@
 FROM amazonlinux AS build 
 
-ENV JAVA_HOME /opt/jdk11
-ENV PATH $PATH:/opt/jdk11/bin
-ENV M2_HOME /opt/maven
+ENV JAVA_HOME=/usr/lib/jvm/java-11-amazon-corretto
+ENV PATH=$PATH:$JAVA_HOME/bin
+ENV M2_HOME=/opt/maven
 
-RUN export PATH 
-RUN export JAVA_HOME 
 RUN yum install wget -y && \
     yum install gzip -y && \
     yum install tar -y && \ 
-    yum install git -y
-
-RUN wget https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz && \
-    tar -xvf openjdk-11+28_linux-x64_bin.tar.gz && \
-    mv jdk-11 /opt/jdk11
+    yum install git -y && \
+    yum install java-11-amazon-corretto-devel -y
 
 RUN wget https://archive.apache.org/dist/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz && \
     tar zxf apache-maven-3.8.6-bin.tar.gz && \
