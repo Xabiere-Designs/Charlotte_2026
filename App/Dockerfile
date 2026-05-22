@@ -21,8 +21,8 @@ RUN /opt/maven/bin/mvn package
 
 FROM amazonlinux
 
-ENV JAVA_HOME /opt/jdk11
-ENV PATH $PATH:/opt/jdk11/bin
+ENV JAVA_HOME=/opt/jdk11
+ENV PATH=$PATH:/opt/jdk11/bin
 
 RUN yum install wget -y && \
     yum install gzip -y && \
