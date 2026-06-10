@@ -6,7 +6,7 @@ ENV M2_HOME=/opt/maven
 
 RUN yum install wget -y && \
     yum install gzip -y && \
-    yum install tar -y && \ 
+    yum install tar -y && \
     yum install git -y && \
     yum install java-11-amazon-corretto-devel -y
 
@@ -16,7 +16,7 @@ RUN wget https://archive.apache.org/dist/maven/maven-3/3.8.6/binaries/apache-mav
 
 COPY java-login-app /opt/app
 
-WORKDIR /opt/app/java-login-app
+WORKDIR /opt/app
 RUN /opt/maven/bin/mvn package
 
 FROM amazonlinux
@@ -36,6 +36,6 @@ RUN wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.82/bin/apache-tomc
     tar zxf apache-tomcat-8.5.82.tar.gz && \
     mv apache-tomcat-8.5.82 /opt/tomcat
 
-COPY --from=build /opt/app/java-login-app/target/*.war /opt/tomcat/webapps/
+COPY --from=build /opt/app/target/*.war /opt/tomcat/webapps/
 
 CMD ["/opt/tomcat/bin/catalina.sh", "run"]
