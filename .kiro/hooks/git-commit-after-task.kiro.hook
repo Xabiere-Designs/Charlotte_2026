@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Git Commit After Task",
+  "description": "Reminds the agent to follow the git workflow (verify branch, stage relevant files, commit with proper message format) after completing a spec task",
+  "version": "1",
+  "when": {
+    "type": "postTaskExecution"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A spec task was just completed. Follow the git workflow from .kiro/steering/git-workflow.md: 1) Verify you're on the correct branch (branch name must match the spec directory name). 2) Stage ONLY the files relevant to this task. 3) Commit with message format: feat(<spec-name>): <task description>. If this is the LAST task in the spec, also: a) push the branch with git push -u origin <branch>, b) create a PR targeting main using gh pr create, c) after push, wait ~30 seconds then run 'gh pr checks <pr-number> --watch' or 'gh run list --branch <branch> --limit 5' to check GitHub Actions status, d) if any checks fail, investigate the failure logs with 'gh run view <run-id> --log-failed', diagnose the issue, fix it, and push again. Do NOT skip any of these steps."
+  }
+}
