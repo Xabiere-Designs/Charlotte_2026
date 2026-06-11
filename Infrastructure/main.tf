@@ -1,3 +1,4 @@
+# Creates the network foundation for the 3-tier application
 module "vpc" {
   source = "git::https://github.com/Xabiere-Designs/Infrastructure_AWS.git//modules/vpc"
 
@@ -11,6 +12,7 @@ module "vpc" {
   }
 }
 
+# Creates web1 and web2 EC2 instances inside the VPC
 module "three_tier_ec2" {
   source = "git::https://github.com/Xabiere-Designs/Infrastructure_AWS.git//modules/three_tier_ec2"
 
@@ -19,8 +21,17 @@ module "three_tier_ec2" {
   public_subnet_id  = module.vpc.public_subnet_ids[0]
   private_subnet_id = module.vpc.private_subnet_ids[0]
 
-  aws_ami       = var.aws_ami
-  instance_type = var.instance_type
-  key_name      = var.key_name
-  my_ip_cidr    = var.my_ip_cidr
+  aws_ami         = var.aws_ami
+  instance_type   = var.instance_type
+  key_name        = var.key_name
+  my_ip_cidr      = var.my_ip_cidr
+  web2_private_ip = var.web2_private_ip
+
+  # NGINX needs the static private IP of web2 for reverse proxy routing
+  web1_user_data = templatefile("${path.module}/scripts/install_nginx.sh", {
+    web2_private_ip = var.web2_private_ip
+  })
+
+  # web2 installs Docker and runs the Java login app container
+  web2_user_data = file("${path.module}/scripts/install_docker.sh")
 }
