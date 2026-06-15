@@ -1,0 +1,5 @@
+aws_ami         = "ami-0521cb2d60cfbb1a6"
+instance_type   = "t2.micro"
+key_name        = "Diamond"
+my_ip_cidr      = "45.85.144.45/32"
+web2_private_ip = "10.0.160.10"
