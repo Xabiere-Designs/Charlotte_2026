@@ -26,6 +26,10 @@ Connect to web2:
 
 ssh -A ec2-user@<WEB2_PRIVATE_IP>
 
+Obtain local CIDR:
+
+curl ifconfig.me
+
 Current Workflow
 
 Bitbucket
@@ -41,3 +45,23 @@ GitHub Actions
 → Docker Hub
 → Pull Image
 → Deploy Container
+
+Terraform
+
+Initialize Terraform
+terraform init
+
+Format Terraform
+terraform fmt
+
+Validate Terraform
+terraform validate
+
+Plan Terraform with an immutable file
+terraform plan -out=tfplan
+
+Show the Terraform plan with immutable plan file
+terraform show tfplan
+
+Deploy Terraform and guarentee its exactly what you reviewed
+terraform apply tfplan
