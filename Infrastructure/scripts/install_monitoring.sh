@@ -35,6 +35,32 @@ chown prometheus:prometheus /usr/local/bin/promtool
 chown -R prometheus:prometheus /etc/prometheus
 chown -R prometheus:prometheus /var/lib/prometheus
 
+# Download Node Exporter
+cd /tmp
+wget -q https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-amd64.tar.gz
+tar xvf node_exporter-1.8.2.linux-amd64.tar.gz
+
+# Copy Node Exporter binary
+cp node_exporter-1.8.2.linux-amd64/node_exporter /usr/local/bin/
+chown prometheus:prometheus /usr/local/bin/node_exporter
+
+# Create Node Exporter systemd service
+cat <<EOF > /etc/systemd/system/node_exporter.service
+[Unit]
+Description=Prometheus Node Exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=prometheus
+Group=prometheus
+Type=simple
+ExecStart=/usr/local/bin/node_exporter
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
 # Prometheus config
 cat <<EOF > /etc/prometheus/prometheus.yml
 global:
@@ -44,6 +70,10 @@ scrape_configs:
   - job_name: "prometheus"
     static_configs:
       - targets: ["localhost:9090"]
+
+  - job_name: "node_exporter"
+    static_configs:
+      - targets: ["localhost:9100"]
 EOF
 
 chown prometheus:prometheus /etc/prometheus/prometheus.yml
