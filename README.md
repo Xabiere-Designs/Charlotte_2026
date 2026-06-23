@@ -65,3 +65,13 @@ terraform show tfplan
 
 Deploy Terraform and guarentee its exactly what you reviewed
 terraform apply tfplan
+
+Monitoring
+
+sudo systemctl status prometheus
+
+curl localhost:9090
+
+sudo systemctl status grafana-server
+
+curl localhost:3000
