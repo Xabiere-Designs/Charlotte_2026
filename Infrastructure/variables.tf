@@ -11,6 +11,13 @@ variable "instance_type" {
   default     = "t2.micro"
 }
 
+# EC2 instance size for dedicated monitoring server
+variable "monitoring_instance_type" {
+  description = "EC2 instance type for Prometheus and Grafana monitoring server"
+  type        = string
+  default     = "t3.small"
+}
+
 # Existing EC2 key pair used for SSH access
 variable "key_name" {
   description = "Existing EC2 key pair name"
