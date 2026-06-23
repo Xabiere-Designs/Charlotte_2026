@@ -63,7 +63,7 @@ terraform plan -out=tfplan
 Show the Terraform plan with immutable plan file
 terraform show tfplan
 
-Deploy Terraform and guarentee its exactly what you reviewed
+Deploy Terraform and guarantee its exactly what you reviewed
 terraform apply tfplan
 
 Monitoring
