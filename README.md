@@ -76,4 +76,3 @@ sudo systemctl status grafana-server
 
 curl localhost:3000
 
-Done.
