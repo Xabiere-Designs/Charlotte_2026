@@ -46,7 +46,7 @@ module "monitoring_ec2" {
   web1_security_group_id = module.three_tier_ec2.web1_security_group_id
 
   aws_ami       = var.aws_ami
-  instance_type = var.instance_type
+  instance_type = var.monitoring_instance_type
   key_name      = var.key_name
 
   monitoring_user_data = file("${path.module}/scripts/install_monitoring.sh")
