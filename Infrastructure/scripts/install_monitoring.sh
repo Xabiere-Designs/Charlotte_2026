@@ -63,3 +63,21 @@ EOF
 systemctl daemon-reload
 systemctl enable prometheus
 systemctl start prometheus
+
+# Install Grafana
+cat <<EOF > /etc/yum.repos.d/grafana.repo
+[grafana]
+name=grafana
+baseurl=https://rpm.grafana.com
+repo_gpgcheck=1
+enabled=1
+gpgcheck=1
+gpgkey=https://rpm.grafana.com/gpg.key
+sslverify=1
+EOF
+
+yum install -y grafana
+
+systemctl daemon-reload
+systemctl enable grafana-server
+systemctl start grafana-server
