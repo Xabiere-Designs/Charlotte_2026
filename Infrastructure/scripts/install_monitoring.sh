@@ -101,6 +101,10 @@ EOF
 
 # Start Prometheus
 systemctl daemon-reload
+
+systemctl enable node_exporter
+systemctl restart node_exporter
+
 systemctl enable prometheus
 systemctl restart prometheus
 
@@ -126,6 +130,8 @@ systemctl restart grafana-server
 
 # Final health checks
 systemctl status prometheus --no-pager
+systemctl status node_exporter --no-pager
 systemctl status grafana-server --no-pager
 curl -I http://localhost:9090 || true
+curl -I http://localhost:9100/metrics || true
 curl -I http://localhost:3000 || true
