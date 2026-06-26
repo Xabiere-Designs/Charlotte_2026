@@ -1,0 +1,59 @@
+
+## `docs/monitoring.md`
+
+```bash
+cat > docs/monitoring.md <<'EOF'
+# Monitoring Design
+
+## Purpose
+
+Monitoring is included early in the Charlotte_2026 architecture so infrastructure and application health can be validated before adding more complex stateful services such as RDS.
+
+## Monitoring Stack
+
+The current monitoring stack includes:
+
+- Prometheus
+- Grafana
+- Node Exporter
+
+## Prometheus
+
+Prometheus collects metrics from configured scrape targets.
+
+Current targets:
+
+- Prometheus itself on port 9090
+- Node Exporter on port 9100
+
+## Node Exporter
+
+Node Exporter exposes Linux host metrics, including:
+
+- CPU
+- Memory
+- Disk
+- Filesystem
+- Network
+
+## Grafana
+
+Grafana provides dashboard visualization for Prometheus metrics.
+
+## Current Access Model
+
+The monitoring server is deployed in a private subnet. Direct browser access is not expected.
+
+The intended access pattern is:
+
+```text
+Browser
+   |
+   v
+Public NGINX Server
+   |
+   v
+Private Monitoring Server
+   |
+   |-- Grafana :3000
+   |-- Prometheus :9090
