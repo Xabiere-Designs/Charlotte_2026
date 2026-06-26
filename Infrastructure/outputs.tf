@@ -24,5 +24,5 @@ output "vpc_id" {
 
 # Monitoring EC2 instance private IP for Prometheus and Grafana access
 output "monitoring_private_ip" {
-  value = module.monitoring_ec2.private_ip
+  value = module.monitoring_ec2.monitoring_private_ip
 }
