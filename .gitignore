@@ -1,15 +1,21 @@
-# Terraform
-**/.terraform/*
+# Terraform working directory
+**/.terraform/
+
+# Terraform state
 *.tfstate
 *.tfstate.*
 crash.log
 crash.*.log
-*.tfvars
+
+# Plans
 *.tfplan
 tfplan
-.terraform.lock.hcl
 
-# SSH keys
+# Sensitive variables
+*.auto.tfvars
+terraform.tfvars
+
+# Keys
 *.pem
 *.key
 id_rsa
