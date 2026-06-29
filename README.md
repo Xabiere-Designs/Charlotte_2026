@@ -1,16 +1,16 @@
 # Charlotte_2026
 
-Production-style 3-Tier Application Deployment Project demonstrating Infrastructure as Code, CI/CD, containerization, reverse proxy architecture, and cloud-native deployment practices on AWS.
+A production-inspired Platform Engineering project that began as a traditional three-tier application deployment and is evolving into a cloud-native application platform on AWS.
 
 ---
 
 ## Overview
 
-Charlotte_2026 is an end-to-end DevOps project designed to simulate the deployment lifecycle of a traditional three-tier web application while progressively evolving toward modern cloud-native architecture.
+Charlotte_2026 is an evolving platform engineering project that began as a traditional three-tier application deployment and is progressively evolving into a production-inspired cloud platform.
 
-Rather than focusing solely on deploying a Java application, this project emphasizes understanding how infrastructure, application code, automation, networking, and deployment pipelines work together to deliver production-ready software.
+Rather than focusing solely on deploying a Java application, the project demonstrates how infrastructure, automation, security, observability, and deployment workflows work together to support modern software delivery. Each iteration builds upon the previous one, introducing new capabilities while reinforcing DevOps and platform engineering best practices through hands-on implementation.
 
-The project serves as a hands-on learning platform for Infrastructure as Code (IaC), CI/CD automation, containerization, monitoring, and platform engineering concepts.
+The project serves as a practical learning environment for Infrastructure as Code (Terraform), configuration management (Ansible), CI/CD (GitHub Actions), containerization (Docker), orchestration (Kubernetes), GitOps (ArgoCD), observability (Prometheus, Grafana, and the Elastic Stack), performance testing (k6), infrastructure testing (Terratest), and hybrid cloud integration.
 
 ---
 
